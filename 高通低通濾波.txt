@@ -1,0 +1,10 @@
+c = imread('cameraman.tif');
+f2 = [1 -2 1 ; -2 4 -2; 1 -2 1];
+cf2 = filter2(f2,c);
+figure,imshow(mat2gray(cf2));
+
+maxcf2=max(cf2(:));
+mincf2=min(cf2(:));
+cf2g=(cf2-mincf2)/(maxcf2-mincf2);
+figure,imshow(cf2g);
+figure,imshow(cf2/60);
