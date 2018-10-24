@@ -1,0 +1,25 @@
+clear all;
+close all;
+a=imread('LENNA.bmp');
+a_paper=imnoise(a,'salt & pepper',0.05);% 胡椒
+figure,imshow(a_paper);
+
+
+a2=ordfilt2(a_paper,5,[0 0 1 0 0;0 0 1 0 0;1 1 1 1 1;0 0 1 0 0;0 0 1 0 0]);
+figure,imshow(a2);%5*5十字
+
+a3=outlier(a_paper,0.4);%奇異點法 D=0.4
+figure,imshow(a3);
+
+a4=fspecial('average',[7,7]); %低通濾波
+t_a4=filter2(a4,a_paper);
+figure,imshow(t_a4/255);
+
+a5 = medfilt2(a_paper,[5,5]); %5*5中位數率波
+figure,imshow(a5);
+
+t=imread('twins.tif');
+t1=imnoise(t,'gaussian',0.005);
+imshow(t1);
+t2w=winter2(t1,[7,7]);
+figure,imshow(t2w);
