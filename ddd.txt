@@ -1,0 +1,22 @@
+clear all;
+close all;
+bc=imread('board.tif');#去除動態模糊
+bg=uint8(rgb2gray(bc));
+b=bg(100:355,50:305);
+figure,imshow(b);
+
+m=fspecial('motion',7,0);
+bm=imfilter(b,m);
+figure,imshow(bm);
+
+m2=zeros(256,256);#調成一樣大小
+m2(1:7,1:7)=m;
+mf=fft2(m2);
+
+bmi=ifft2(fft2(bm)./mf);
+figure,fftshow(bmi,'abs');
+
+d=0.02;
+mf=fft2(m2);mf(find(abs(mf)<d))=1;
+bmi=ifft2(fft2(bm)./mf);
+figure,imshow(mat2gray(abs(bmi))*2);

@@ -1,0 +1,25 @@
+clear all;#¤ÏÂà²vªi
+close all;
+w=imread('girl256.bmp');
+wf = fftshift(fft2(w));
+b=lbutter(w,20,2);
+wb=wf.*b;
+wba=abs(ifft2(wb));
+wba=uint8(wba);
+figure,imshow(wba);
+
+wl=fftshift(fft2(wba))./b;
+wla=abs(ifft2(wl));
+figure,imshow(mat2gray(wla));
+
+
+wbf=fftshift(fft2(wba));
+wl=(wbf./b).*lbutter(w,100,10);
+wlb=abs(ifft2(wl));
+figure,imshow(mat2gray(wlb));
+
+d=0.01;
+b=lbutter(w,15,2);b(find(b<d))=1;
+wl=fftshift(fft2(wba))./b;
+wlc=abs(ifft2(wl));
+figure,imshow(mat2gray(wlc));
