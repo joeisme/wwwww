@@ -1,0 +1,8 @@
+close all;
+clear all;
+
+a=imread('girl256.bmp'); # CANNYÃä½tÂà´«
+[ic,t]=edge(a,'canny');
+figure,imshow(ic);
+[icc,t]=edge(a,'canny',[0.4,0.15]);
+figure,imshow(icc);

@@ -1,0 +1,12 @@
+d=imread('ic.tif');
+hd=hough(d);
+figure,imshow(mat2gray(hd)*1.5);#houghÂà´«
+max(hc(:))
+[r,theta]=find(hd>100)
+d2=imadd(imdivide(d,4),192);
+figure,imshow(d2);
+houghline(d2,236,94);
+houghline(d2,27,184);
+houghline(d2,48,184);
+houghline(d2,154,184);
+houghline(d2,220,184);
